@@ -1,5 +1,6 @@
 from db import db
 from models.workflows_metadata import WorkflowsMetadataModel
+from services.slack import send_message
 
 
 class WorkflowsMetadataManager:
@@ -17,7 +18,13 @@ class WorkflowsMetadataManager:
         db.session.commit()
 
     @staticmethod
-    def get_status_instance(instance_name):
+    def send_notification(instance_name):
         workflow = WorkflowsMetadataModel.query.filter(WorkflowsMetadataModel.workflow_instance == instance_name).first()
-        return workflow.status
+        slack_msg = """
+                    :red_circle: *Job failed*:
+                *Job*: {instance_name}
+                *Log url*: {log_url}
+                    """.format(instance_name=instance_name, log_url=workflow.logs)
+        send_message(slack_msg)
+        #return workflow.status
 

@@ -1,9 +1,12 @@
 from marshmallow import fields, validate, Schema
 
-#from schemas.base import AuthBase
-
 
 class RegisterSchemaRequest(Schema):
-    email = fields.String(min_length=5, max_length=50, required=True)
-    password = fields.String(min_length=8, max_length=16, required=True)
+    email = fields.String(required=True, validate=validate.Length(min=5, max=50))
+    password = fields.String(required=True, validate=validate.Length(min=8, max=16))
     role = fields.String(required=True, validate=validate.OneOf(["admin", "developer"]))
+
+
+class LoginSchemaRequest(Schema):
+    email = fields.String(required=True, validate=validate.Length(min=5, max=50))
+    password = fields.String(required=True, validate=validate.Length(min=8, max=16))

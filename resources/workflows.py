@@ -4,13 +4,18 @@ from flask import request
 from flask_api import status
 from flask_restful import Resource
 
+from managers.auth import auth
 from managers.workflows import WorkflowManager
+from models.users import UserModel
+from models.enums import UserRole
 from schemas.requests.auth import RegisterSchemaRequest
-from utils.decorators import validate_schema
+from utils.decorators import validate_schema, permission_required
 
 
 class WorkflowsResource(Resource):
-    #@validate_schema(RegisterSchemaRequest)
+    @auth.login_required
+    @permission_required('admin')
+    #@validate_schema(ComplaintSchemaRequest)
     def post(self):
         data = request.get_json()
         entry = WorkflowManager.create_workflow(data)
@@ -23,6 +28,8 @@ class WorkflowsResource(Resource):
 
 
 class DeleteWorkflowResource(Resource):
+    @auth.login_required
+    @permission_required('admin')
     def delete(self, workflow_name):
         WorkflowManager.delete_workflow(workflow_name)
 

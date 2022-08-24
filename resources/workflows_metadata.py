@@ -24,5 +24,5 @@ class WorkflowMetadataUpdateResource(Resource):
 
 class GetWorkflowStatus(Resource):
     def get(self, instance_name):
-        instance = WorkflowsMetadataManager.get_status_instance(instance_name)
+        instance = WorkflowsMetadataManager.send_notification(instance_name)
         return instance

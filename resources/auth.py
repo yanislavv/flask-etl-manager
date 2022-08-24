@@ -4,7 +4,7 @@ from flask_restful import Resource
 
 #from managers.approver import ApproverManager
 from managers.users import ComplainerManager
-from schemas.requests.auth import RegisterSchemaRequest
+from schemas.requests.auth import RegisterSchemaRequest, LoginSchemaRequest
 from utils.decorators import validate_schema
 
 
@@ -13,11 +13,11 @@ class RegisterResource(Resource):
     def post(self):
         data = request.get_json()
         token = ComplainerManager.register(data)
-        return {"token": token},  status.HTTP_201_CREATED
+        return {"token": token}, status.HTTP_201_CREATED
 
 
 class LoginResource(Resource):
-    #@validate_schema(LoginSchemaRequest)
+    @validate_schema(LoginSchemaRequest)
     def post(self):
         data = request.get_json()
         token = ComplainerManager.login(data)

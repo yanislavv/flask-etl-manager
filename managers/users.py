@@ -20,7 +20,6 @@ class ComplainerManager:
         complainer = UserModel.query.filter_by(email=login_data["email"]).first()
         if not complainer:
             raise BadRequest("No such email! Please register!")
-
         if check_password_hash(complainer.password, login_data["password"]):
             return AuthManager.encode_token(complainer)
         raise BadRequest("Wrong credentials!")

@@ -14,7 +14,7 @@ routes = (
     (RegisterResource, "/register"),
     (LoginResource, "/login"),
     (WorkflowsResource, "/home"),
-    (DeleteWorkflowResource, "/home/<workflow_name>"),
+    (DeleteWorkflowResource, "/home/<workflow_name>/delete"),
     (UpdateWorkflowResource, "/home/<workflow_name>/update"),
     (WorkflowMetadataResource, "/instances"),
     (WorkflowMetadataUpdateResource, "/instances/<instance_name>"),
