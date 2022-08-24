@@ -9,21 +9,21 @@ class WorkflowManager:
     def create_workflow(data):
         workflow = WorkflowsModel(**data)
         db.session.add(workflow)
-        db.session.commit()
+        #db.session.commit()
         return workflow
 
     @staticmethod
-    def get_workflows():
+    def get_workflow():
         return WorkflowsModel.query.all()
 
     @staticmethod
     def delete_workflow(workflow_name):
-        workflow = WorkflowsModel.query.filter(WorkflowsModel.workflow_name == workflow_name).delete()
-        db.session.commit()
-        return workflow
+        WorkflowsModel.query.filter(WorkflowsModel.workflow_name == workflow_name).delete()
+        #db.session.commit()
 
     @staticmethod
     def update_workflow(workflow_name, new_params):
-        workflow = WorkflowsModel.query.filter(WorkflowsModel.workflow_name == workflow_name).first() #maybe not needed
+        old_params = WorkflowsModel.query.filter(WorkflowsModel.workflow_name == workflow_name).first()
         WorkflowsModel.query.filter(WorkflowsModel.workflow_name == workflow_name).update({"workflow_parameters": new_params})
-        db.session.commit()
+        #db.session.commit()
+        return old_params

@@ -2,7 +2,6 @@ from flask import request
 from flask_api import status
 from flask_restful import Resource
 
-#from managers.approver import ApproverManager
 from managers.users import ComplainerManager
 from schemas.requests.auth import RegisterSchemaRequest, LoginSchemaRequest
 from utils.decorators import validate_schema
