@@ -86,16 +86,6 @@ class TestApp(TestCase):
         resp = self.client.post(url, headers=headers, json=data)
         self.assert400(resp)
         assert resp.json == {'message': {'workflow_parameters': ['Missing data for required field.']}}
-    #
-    #     data["first_name"] = "A"
-    #     resp = self.client.post(url, headers=headers, json=data)
-    #     self.assert400(resp)
-    #     assert resp.json == {'message': {'first_name': ['Length must be between 2 and 20.']}}
-    #
-    #     data["first_name"] = "AAAAAAAAAAAAAAAAAAAAAAA"
-    #     resp = self.client.post(url, headers=headers, json=data)
-    #     self.assert400(resp)
-    #     assert resp.json == {'message': {'first_name': ['Length must be between 2 and 20.']}}
 
     def test_create_workflow(self):
         user = UserFactoryAdmin()

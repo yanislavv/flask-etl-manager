@@ -1,6 +1,8 @@
+from decouple import config
+
 from slack_sdk.webhook import WebhookClient
 
-url = "https://hooks.slack.com/services/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l"
+url = config('SLACK_URL')
 
 
 def send_message(text):
