@@ -1,5 +1,3 @@
-from sqlalchemy import func
-
 from db import db
 
 
@@ -8,7 +6,7 @@ class WorkflowsMetadataModel(db.Model):
 
     workflow_instance = db.Column(db.String(100), primary_key=True)
     workflow_name = db.Column(db.String(100), db.ForeignKey("workflows.workflow_name"))
-    input_parameters = db.Column(db.JSON, nullable=False) #foreign key
+    input_parameters = db.Column(db.JSON, nullable=False)
     started_on = db.Column(db.DateTime)
     ended_on = db.Column(db.DateTime)
     status = db.Column(db.String(10))

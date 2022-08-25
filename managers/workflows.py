@@ -1,5 +1,3 @@
-from werkzeug.exceptions import BadRequest
-
 from db import db
 from models.workflows import WorkflowsModel
 
@@ -9,7 +7,6 @@ class WorkflowManager:
     def create_workflow(data):
         workflow = WorkflowsModel(**data)
         db.session.add(workflow)
-        #db.session.commit()
         return workflow
 
     @staticmethod
@@ -19,11 +16,9 @@ class WorkflowManager:
     @staticmethod
     def delete_workflow(workflow_name):
         WorkflowsModel.query.filter(WorkflowsModel.workflow_name == workflow_name).delete()
-        #db.session.commit()
 
     @staticmethod
     def update_workflow(workflow_name, new_params):
         old_params = WorkflowsModel.query.filter(WorkflowsModel.workflow_name == workflow_name).first()
         WorkflowsModel.query.filter(WorkflowsModel.workflow_name == workflow_name).update({"workflow_parameters": new_params})
-        #db.session.commit()
         return old_params

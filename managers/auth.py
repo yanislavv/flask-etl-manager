@@ -1,10 +1,10 @@
-import jwt
-from jwt.exceptions import ExpiredSignatureError, InvalidTokenError
-
 from datetime import datetime, timedelta
+
+import jwt
 from decouple import config
 from flask_httpauth import HTTPTokenAuth
-from werkzeug.exceptions import BadRequest, Unauthorized
+from jwt.exceptions import ExpiredSignatureError, InvalidTokenError
+from werkzeug.exceptions import Unauthorized
 
 from models import UserModel
 

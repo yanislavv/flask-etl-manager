@@ -1,4 +1,3 @@
-from models.enums import UserRole
 from db import db
 
 

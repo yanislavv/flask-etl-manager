@@ -1,9 +1,9 @@
 from werkzeug.exceptions import BadRequest
+from werkzeug.security import generate_password_hash, check_password_hash
 
 from db import db
 from managers.auth import AuthManager
 from models.users import UserModel
-from werkzeug.security import generate_password_hash, check_password_hash
 
 
 class ComplainerManager:
@@ -12,7 +12,6 @@ class ComplainerManager:
         complainer_data["password"] = generate_password_hash(complainer_data["password"])
         user = UserModel(**complainer_data)
         db.session.add(user)
-        #db.session.commit()
         return AuthManager.encode_token(user)
 
     @staticmethod
