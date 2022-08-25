@@ -4,15 +4,15 @@ The idea behind this flask applications is to have easy to use, for a non-techni
 
 ## Endpoint description
 
-* /register (POST) - app registration - public access
-* /login (POST) - login to the app - public access
-* /home (POST) - create new workflow from here - admin access
-* /home (GET) - get list of workflow names
-* /home/<workflow_name>/delete (DELETE) - delete workflow - admin access
-* /home/<workflow_name>/update (PUT) - update input parameters of the workflow
-* /instances (POST) - create new instance of given worflow
-* /instances/<instance_name> (PUT) - update metadata (E.g. started_on, ended_on, status, log_url ) for given instance that was executed
-* /instances/<instance_name>/status (GET) - get status of instance that has finished and send slack message if the job failed
+* `/register (POST)` - app registration - public access
+* `/login (POST)` - login to the app - public access
+* `/home (POST)` - create new workflow from here - admin access
+* `/home (GET)` - get list of workflow names
+* `/home/<workflow_name>/delete (DELETE)` - delete workflow - admin access
+* `/home/<workflow_name>/update (PUT)` - update input parameters of the workflow
+* `/instances (POST)` - create new instance of given worflow
+* `/instances/<instance_name> (PUT)` - update metadata (E.g. started_on, ended_on, status, log_url ) for given instance that was executed
+* `/instances/<instance_name>/status (GET)` - get status of instance that has finished and send slack message if the job failed
 
 ## Database description
 
