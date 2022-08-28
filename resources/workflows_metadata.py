@@ -26,7 +26,7 @@ class WorkflowMetadataUpdateResource(Resource):
 
 class GetWorkflowStatus(Resource):
     def get(self, instance_name):
-        response = WorkflowsMetadataManager.send_notification(instance_name)
+        response, status_instance = WorkflowsMetadataManager.send_notification(instance_name)
         if not response == 200:
-            return status.HTTP_403_FORBIDDEN, response
-        return status.HTTP_200_OK
+            return status.HTTP_403_FORBIDDEN
+        return status_instance, status.HTTP_200_OK

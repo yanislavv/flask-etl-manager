@@ -20,5 +20,6 @@ class WorkflowManager:
     @staticmethod
     def update_workflow(workflow_name, new_params):
         old_params = WorkflowsModel.query.filter(WorkflowsModel.workflow_name == workflow_name).first()
+        old_params_values = old_params.workflow_parameters
         WorkflowsModel.query.filter(WorkflowsModel.workflow_name == workflow_name).update({"workflow_parameters": new_params})
-        return old_params
+        return old_params_values

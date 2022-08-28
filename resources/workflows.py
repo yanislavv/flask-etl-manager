@@ -38,5 +38,5 @@ class UpdateWorkflowResource(Resource):
         data = request.get_json()
         old_params = WorkflowManager.update_workflow(workflow_name, data['workflow_parameters'])
         return f"The parameters of {workflow_name} workflow has been updated:" \
-               f"Old parameters -> {old_params.workflow_parameters}" \
+               f"Old parameters -> {old_params}" \
                f"New parameters -> {data['workflow_parameters']}", status.HTTP_200_OK

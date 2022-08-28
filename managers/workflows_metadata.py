@@ -18,11 +18,14 @@ class WorkflowsMetadataManager:
     @staticmethod
     def send_notification(instance_name):
         workflow = WorkflowsMetadataModel.query.filter(WorkflowsMetadataModel.workflow_instance == instance_name).first()
-        slack_msg = """
-                    :red_circle: *Job failed*:
-                *Job*: {instance_name}
-                *Log url*: {log_url}
-                    """.format(instance_name=instance_name, log_url=workflow.logs)
-        response = send_message(slack_msg)
-        return response
+        status = workflow.status
+        if status == 'FAILED':
+            slack_msg = """
+                        :red_circle: *Job failed*:
+                    *Job*: {instance_name}
+                    *Log url*: {log_url}
+                        """.format(instance_name=instance_name, log_url=workflow.logs)
+            response = send_message(slack_msg)
+            return response, status
+        return 200, status
 
